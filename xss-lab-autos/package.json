@@ -1,0 +1,14 @@
+{
+  "name": "xss-lab-autos",
+  "version": "1.0.0",
+  "description": "Laboratorio didáctico de XSS - tienda de autos (solo localhost)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}
